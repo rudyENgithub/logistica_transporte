@@ -1,0 +1,97 @@
+
+    <div *ngIf="currentEnvio.id_envio" class="edit-form">
+      <h4>Envio</h4>
+      <form>
+        <div >
+        
+            <div class="form-group">
+              <label for="nombre_cliente">Nombre Cliente</label>
+              <input
+                type="text"
+                
+                class="form-control"
+                id="nombre_cliente"
+                
+                disabled="true"
+                [(ngModel)]="currentEnvio.clientenombre"
+                name="nombre_cliente"
+              />
+            </div>
+      
+            <div class="form-group">
+              <label for="direccion_cliente">Direccion Cliente</label>
+              <input
+                class="form-control"
+                id="direccion_cliente"
+                disabled="true"
+                [(ngModel)]="currentEnvio.clientedireccion"
+                name="direccion_cliente"
+              />
+            </div>
+    
+    
+              <div class="form-group">
+                <label for="producto">Producto</label>
+                <input
+                  class="form-control"
+                  id="producto"
+                  disabled="true"
+                  [(ngModel)]="currentEnvio.producto"
+                  name="producto"
+                />
+              </div>
+    
+          
+    
+             
+    
+             
+              <div class="form-group">
+                <label for="precioenvio">Precio de Envio</label>
+                <input
+                  class="form-control"
+                  id="precioenvio"
+                  disabled="true"
+                  [(ngModel)]="currentEnvio.precioenvio"
+                  name="precioenvio"
+                  
+                />
+              </div>
+    
+       
+    
+              <div class="form-group">
+                <label for="guia">Numero de Guia</label>
+                <input
+                  class="form-control"
+                  id="guia"
+                  [(ngModel)]="currentEnvio.numeroguia"
+                  name="guia"
+                />
+              </div>
+      
+           
+            
+          </div>
+      </form>
+      <button class="badge badge-danger mr-2" (click)="deleteEnvio()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateEnvio()"
+      >
+        Update
+      </button>
+    
+      <p>{{ message }}</p>
+    </div>
+
+   
+  
+    <div *ngIf="!currentEnvio.id_envio">
+      <br />
+      <p>Cannot access this Envio...</p>
+    </div>

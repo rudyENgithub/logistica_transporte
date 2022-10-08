@@ -1,0 +1,166 @@
+<div>
+    <h3>Registre un envio de Mercaderia</h3>
+    <div class="submit-form">
+      <form id="form" (ngSubmit)="onSubmit()">
+      <div  *ngIf="!submitted">
+        
+        <div class="form-group">
+          <label for="nombre_cliente">Nombre Cliente</label>
+          <input
+            type="text"
+            
+            class="form-control"
+            id="nombre_cliente"
+            
+            required
+            [(ngModel)]="envio.clientenombre"
+            name="nombre_cliente"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="direccion_cliente">Direccion Cliente</label>
+          <input
+            class="form-control"
+            id="direccion_cliente"
+            required
+            [(ngModel)]="envio.clientedireccion"
+            name="direccion_cliente"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="direccion_cliente">Tipo Logistica</label>
+            <select  [(ngModel)]="bodega.tipobodega" (change)="searchTipoBodega()" class="form-control" name="direccion_cliente"  required>
+                <option value="">Tipo Logistica</option>
+                <option *ngFor="let tipo_log of tipo_logistica" [ngValue]="tipo_log">{{tipo_log}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="direccion_cliente">Bodega</label>
+            <select  [(ngModel)]="bodega.id_bodega" class="form-control" name="direccion_cliente"  required>
+                
+                <option *ngFor="let bodega of bodegas" [ngValue]="bodega.id_bodega">{{bodega.nombrebodega}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="producto">Producto</label>
+            <input
+              class="form-control"
+              id="producto"
+              required
+              [(ngModel)]="envio.producto"
+              name="producto"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cantidad">Cantidad de Producto</label>
+            <input (keyup)="onKey($event)"
+              class="form-control"
+              id="cantidad"
+              required
+              [(ngModel)]="envio.cantidadproducto"
+              name="cantidad"
+              [attr.disabled]="this.bodega.tipobodega ? null : ''"
+              
+
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="fecreg">Fecha de Registro</label>
+            <input
+            type="date"
+              class="form-control"
+              id="fecreg"
+              required
+              [(ngModel)]="envio.fecharegistro"
+              name="fecreg"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="fecent">Fecha de Entrega</label>
+            <input
+            type="date"
+              class="form-control"
+              id="fecent"
+              required
+              [(ngModel)]="envio.fechaentrega"
+              name="fecent"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="precioenvio">Precio de Envio</label>
+            <input
+              class="form-control"
+              id="precioenvio"
+              required
+              [(ngModel)]="envio.precioenvio"
+              name="precioenvio"
+              (change)="onKeyCalculo($event)"
+            />
+          </div>
+
+          <div class="form-group">
+            <label *ngIf="preciodescuento == true" for="preciodesc">Precio Descuento</label>
+            <input 
+              class="form-control"
+              id="preciodesc"
+              *ngIf="preciodescuento == true"
+              required
+              [(ngModel)]="envio.preciodescuento"
+              name="preciodesc"
+              disabled="true"
+            /> <span   *ngIf="preciodescuento == true" style="color: red; font-weight: bold;">Descuento del {{porcentajedecuento}} % por transporte {{this.bodega.tipobodega}} </span>
+          </div>
+
+          <div class="form-group">
+            <label for="placa">Placa Vehiculo</label>
+            <input 
+              class="form-control"
+              id="placa"
+              required
+              [(ngModel)]="transporte.placa"
+              name="placa"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="flota">Numero de Flota</label>
+            <input
+              class="form-control"
+              id="flota"
+              required
+              [(ngModel)]="transporte.numeroflota"
+              name="flota"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="guia">Numero de Guia</label>
+            <input
+              class="form-control"
+              id="guia"
+              required
+              [(ngModel)]="envio.numeroguia"
+              name="guia"
+            />
+          </div>
+  
+        <button (click)="saveEnvio()" class="btn btn-success">Registrar Envio de Mercancia</button>
+        
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Envio de Mercaderia fie agregado exitosamente!</h4>
+        <button class="btn btn-success" >Add</button>
+      </div>
+    </form>
+    </div>
+  </div>
+  
