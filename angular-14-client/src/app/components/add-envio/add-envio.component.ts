@@ -44,8 +44,8 @@ export class AddEnvioComponent implements OnInit {
     id_usuario: 1,
     id_transporte: 0,
     cantidadproducto: 0,
-    fecharegistro: new Date("Fri Dec 08 2022 07:44:57"),
-    fechaentrega: new Date("Fri Dec 08 2022 07:44:57"),
+    fecharegistro: new Date("Fri Dec 01 2000 00:00:00"),
+    fechaentrega: new Date(),
     id_bodega: 0,
     precioenvio: 0,
     preciodescuento: 0,
@@ -131,14 +131,52 @@ export class AddEnvioComponent implements OnInit {
 
   }*/
 
-  onSubmit(): void {
-    this.submitted = true;
+  /*
+  
+   id_usuario: 1,
+    id_transporte: 0,
+    cantidadproducto: 0,
+    fecharegistro: new Date("Fri Dec 08 2022 07:44:57"),
+    fechaentrega: new Date("Fri Dec 08 2022 07:44:57"),
+    id_bodega: 0,
+    precioenvio: 0,
+    preciodescuento: 0,
+    numeroguia: '',
 
-    if (this.form.invalid) {
+    logisticaterrestre: false,
+    logisticamaritima: false,
+    clientenombre: '',
+    clientedireccion: '',
+    producto: ''
+  */
+
+  onSubmit(): void {
+    //this.submitted = true;
+    
+    if(this.envio.clientenombre == "" || this.envio.clientedireccion == "" || this.envio.id_bodega == 0 ||  this.envio.producto == "" ||
+    this.envio.cantidadproducto == 0 || this.envio.fecharegistro ==  new Date("Fri Dec 01 2000 00:00:00") || this.envio.fechaentrega ==  new Date("Fri Dec 01 2000 00:00:00") 
+    || this.envio.precioenvio == 0 || this.envio.numeroguia == "" ){
+      
+      swal.fire('Error Envio', 'LLene todos los campos!', 'error');
+      return;
+
+    }
+
+    if(this.bodega.tipobodega == 'Terrestre' && this.transporte.placa == ''){
+      swal.fire('Error Envio', 'Ingrese la placa del transporte!', 'error');
       return;
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+    if(this.bodega.tipobodega == 'Maritima' && this.transporte.numeroflota == ''){
+      swal.fire('Error Envio', 'Ingrese el numero de flota!', 'error');
+      return;
+    }
+
+
+
+
+    this.saveEnvio();
+
   }
 
   onReset(): void {
@@ -147,12 +185,7 @@ export class AddEnvioComponent implements OnInit {
   }
  
   saveEnvio(): void {
-
-    if(this.envio.clientenombre == null){
-     // swal('Error Login', 'Username o password vacías!', 'error');
-
-
-    }
+  
     let ismaritima: boolean = false;
     let isterrestre: boolean = false;
 
@@ -170,7 +203,7 @@ export class AddEnvioComponent implements OnInit {
     cantidadproducto:this.envio.cantidadproducto,
     fecharegistro: this.envio.fecharegistro ,
     fechaentrega: this.envio.fechaentrega ,
-    id_bodega:this.bodega.id_bodega,
+    id_bodega:this.envio.id_bodega,
     precioenvio: this.envio.precioenvio,
     numeroguia: this.envio.numeroguia,
     logisticaterrestre: isterrestre,
@@ -203,7 +236,7 @@ this.transporteService.create(dataTransporte)
         console.log(res.id_envio);
      //   data.id_transporte:res.getI
         this.submitted = true;
-        this.router.navigate(['/listEnvios'])
+        this.router.navigate(['/envios'])
 
       },
       error: (e) => console.error(e)

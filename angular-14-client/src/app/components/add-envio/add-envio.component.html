@@ -12,7 +12,7 @@
             class="form-control"
             id="nombre_cliente"
             
-            required
+            
             [(ngModel)]="envio.clientenombre"
             name="nombre_cliente"
           />
@@ -23,7 +23,7 @@
           <input
             class="form-control"
             id="direccion_cliente"
-            required
+          
             [(ngModel)]="envio.clientedireccion"
             name="direccion_cliente"
           />
@@ -39,7 +39,7 @@
 
           <div class="form-group">
             <label for="direccion_cliente">Bodega</label>
-            <select  [(ngModel)]="bodega.id_bodega" class="form-control" name="direccion_cliente"  required>
+            <select  [(ngModel)]="envio.id_bodega" class="form-control" name="direccion_cliente"  required>
                 
                 <option *ngFor="let bodega of bodegas" [ngValue]="bodega.id_bodega">{{bodega.nombrebodega}}</option>
             </select>
@@ -61,7 +61,7 @@
             <input (keyup)="onKey($event)"
               class="form-control"
               id="cantidad"
-              required
+              
               [(ngModel)]="envio.cantidadproducto"
               name="cantidad"
               [attr.disabled]="this.bodega.tipobodega ? null : ''"
@@ -76,7 +76,7 @@
             type="date"
               class="form-control"
               id="fecreg"
-              required
+              
               [(ngModel)]="envio.fecharegistro"
               name="fecreg"
             />
@@ -88,7 +88,7 @@
             type="date"
               class="form-control"
               id="fecent"
-              required
+              
               [(ngModel)]="envio.fechaentrega"
               name="fecent"
             />
@@ -120,8 +120,8 @@
           </div>
 
           <div class="form-group">
-            <label for="placa">Placa Vehiculo</label>
-            <input 
+            <label *ngIf="bodega.tipobodega == 'Terrestre'"  for="placa">Placa Vehiculo</label>
+            <input *ngIf="bodega.tipobodega == 'Terrestre'"
               class="form-control"
               id="placa"
               required
@@ -131,8 +131,8 @@
           </div>
 
           <div class="form-group">
-            <label for="flota">Numero de Flota</label>
-            <input
+            <label *ngIf="bodega.tipobodega == 'Maritima'" for="flota">Numero de Flota</label>
+            <input *ngIf="bodega.tipobodega == 'Maritima'"
               class="form-control"
               id="flota"
               required
@@ -151,8 +151,8 @@
               name="guia"
             />
           </div>
-  
-        <button (click)="saveEnvio()" class="btn btn-success">Registrar Envio de Mercancia</button>
+  <!-- (click)="saveEnvio()" -->
+        <button  class="btn btn-success">Registrar Envio de Mercancia</button>
         
       </div>
   
