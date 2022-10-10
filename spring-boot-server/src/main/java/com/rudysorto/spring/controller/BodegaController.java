@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rudysorto.spring.model.Bodega;
-import com.rudysorto.spring.model.Tutorial;
 import com.rudysorto.spring.repository.BodegaRepository;
 
-@CrossOrigin(origins = "http://localhost:4300")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class BodegaController {

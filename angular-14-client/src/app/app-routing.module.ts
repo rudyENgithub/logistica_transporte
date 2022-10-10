@@ -9,9 +9,6 @@ import { EnvioDetailsComponent } from './components/envio-details/envio-details.
 
 const routes: Routes = [
   { path: '', redirectTo: 'addEnvio', pathMatch: 'full' },
-  { path: 'tutorials', component: TutorialsListComponent },
-  { path: 'tutorials/:id', component: TutorialDetailsComponent },
-  { path: 'add', component: AddTutorialComponent },
   { path: 'addEnvio', component: AddEnvioComponent },
   { path: 'envios', component: EnviosListComponent },
   { path: 'envios/:id_envio', component: EnvioDetailsComponent }

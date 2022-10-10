@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rudysorto.spring.model.Bodega;
 import com.rudysorto.spring.model.Envio;
-import com.rudysorto.spring.model.Tutorial;
 import com.rudysorto.spring.repository.EnvioRepository;
 
 

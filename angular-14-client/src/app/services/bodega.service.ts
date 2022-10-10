@@ -8,6 +8,7 @@ const baseUrl = 'http://localhost:8180/api/bodegas';
 //const baseUrl = 'http://localhost:8080/spring-boot-jpa-h2-0.0.1-SNAPSHOT/api/bodegas';
 //produccion aws
 //const baseUrl = 'http://www.gruposytes.com:8080/spring-boot-jpa-h2-0.0.1-SNAPSHOT/api/bodegas';
+//const baseUrl = 'http://www.gruposytes.com:8080/spring-boot-apiingeneo-0.0.1-SNAPSHOT/api/bodegas';
 
 @Injectable({
   providedIn: 'root'

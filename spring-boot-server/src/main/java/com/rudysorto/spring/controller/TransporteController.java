@@ -27,6 +27,7 @@ public class TransporteController {
 			Transporte _transporte = this.transporteRepository.save(transporte);
 			return new ResponseEntity<>(_transporte, HttpStatus.CREATED);
 		} catch (Exception e) {
+			System.out.println("RS-LOG" + e.getMessage());
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
